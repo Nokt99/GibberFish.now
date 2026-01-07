@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>GibberFish — Chaos Language</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Fira+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="./src/styles.css" />
+</head>
+<body>
+  <div id="app" class="app-shell" aria-live="polite">
+    <header class="topbar">
+      <div class="left">
+        <div class="logo" aria-hidden="true">
+          <!-- simple inline SVG logo -->
+          <svg viewBox="0 0 64 64" width="36" height="36" role="img" aria-label="GibberFish logo">
+            <defs>
+              <linearGradient id="g1" x1="0" x2="1">
+                <stop offset="0" stop-color="#25f4ff"/>
+                <stop offset="1" stop-color="#a855ff"/>
+              </linearGradient>
+            </defs>
+            <path d="M8 32c8-12 28-12 36 0-8 12-28 12-36 0z" fill="url(#g1)"/>
+            <circle cx="44" cy="24" r="4" fill="#fff" opacity="0.95"/>
+          </svg>
+        </div>
+        <div class="title">GibberFish</div>
+        <div class="tagline" id="sessionTag">Session • The Fish Decides</div>
+      </div>
+
+      <div class="right">
+        <div class="indicator">
+          <label for="chaosMeter" class="meter-label">Chaos</label>
+          <div id="chaosMeter" class="meter" aria-hidden="true"><div class="meter-fill" style="width:0%"></div></div>
+        </div>
+
+        <div class="top-actions">
+          <button id="saveBtn" class="btn small">Save</button>
+          <input id="importFile" type="file" accept="application/json" style="display:none" />
+          <button id="importBtn" class="btn small">Import</button>
+          <button id="trollToggle" class="troll-toggle" aria-pressed="false">Troll Mode</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="main-grid">
+      <section class="left-panel">
+        <div class="panel card input-panel">
+          <h3>Feed the Void</h3>
+          <textarea id="letterInput" placeholder="Type random letters. Each letter summons something..." spellcheck="false" aria-label="Letter input"></textarea>
+
+          <div class="controls">
+            <div class="left-controls">
+              <button id="generateBtn" class="btn primary">Generate Chaos</button>
+              <button id="runBtn" class="btn accent">Run Chaos</button>
+            </div>
+            <div class="right-controls">
+              <div class="stat">Letters: <span id="letterCount">0</span></div>
+              <div class="stat">Drops: <span id="dropCount">0</span></div>
+            </div>
+          </div>
+
+          <div class="hint">Tip: More letters increase the chance of rare events. Everything is random.</div>
+        </div>
+
+        <div class="panel card pools-panel">
+          <h4>Active Pools</h4>
+          <div id="poolSummary" class="pool-summary">
+            <div>Memes: <span id="poolMemes">—</span></div>
+            <div>Code Fragments: <span id="poolCode">—</span></div>
+            <div>Fake Calls: <span id="poolCalls">—</span></div>
+            <div>Printer Messages: <span id="poolPrint">—</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="right-panel">
+        <div class="panel card output-panel">
+          <div class="output-header">
+            <h3>Chaos Output</h3>
+            <div class="output-actions">
+              <button id="clearOutput" class="btn">Clear</button>
+              <button id="snapshotBtn" class="btn">Snapshot</button>
+            </div>
+          </div>
+
+          <div id="outputZone" class="output-zone" aria-live="polite"></div>
+        </div>
+      </section>
+    </main>
+
+    <!-- floating bubbles for vibe -->
+    <div id="floatingBubbles" class="bubbles" aria-hidden="true"></div>
+  </div>
+
+  <!-- App scripts -->
+  <script type="module" src="./src/app.js"></script>
+</body>
+</html>
